@@ -1,10 +1,9 @@
 var express = require('express');
+const bodyParser = require("body-parser");
 
 const app = express();
 
-app.get('/1', (req, res) => {
-    res.send('Hello World!');
-});
+const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 var controller = require('./controller/controller');
 
@@ -19,7 +18,7 @@ app.get("/", function (req, res) {
 
 app.get('/games/list', controller.getGamesList);
 
-app.post('/games/new', controller.createNewGame)
+app.post('/games/new', urlencodedParser, controller.createNewGame)
 
 const server = app.listen(8081, () => {
     console.log(`Server is up and running on port 8081`);

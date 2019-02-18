@@ -12,7 +12,7 @@ const getGamesList = (req, res) => {
 }
 
 const createNewGame = (req, res) => {
-    res.json([{answer: 'yep'}]);
+    res.send({answer: req.body.userName});
 }
 
 

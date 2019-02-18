@@ -9,7 +9,6 @@ class Login extends Component {
     onLoginChange(e) {
         var val = e.target.value;
         this.props.updateData(val);
-        console.log("value to update", val);
     }
 
     render() {

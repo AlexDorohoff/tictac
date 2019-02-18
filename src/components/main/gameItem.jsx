@@ -8,7 +8,6 @@ class GameItem extends Component {
         this.state =
             {
                 item: this.props.item
-
             };
 
     }
