@@ -17,6 +17,7 @@ app.get("/", function (req, res) {
     res.render('index.html');
 })
 
+app.get('/games/list', controller.getGamesList);
 
 const server = app.listen(8081, () => {
     console.log(`Server is up and running on port 8081`);
