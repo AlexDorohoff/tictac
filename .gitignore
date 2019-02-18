@@ -3,6 +3,10 @@
 # dependencies
 /node_modules
 /.pnp
+.xml
+/server/node_modules
+/.xml
+/server/node_modules
 .pnp.js
 
 # testing
