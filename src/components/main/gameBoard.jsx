@@ -9,20 +9,37 @@ class GameBoard extends Component {
         super(props);
         this.state = {
             jsonData: '',
-            login : '',
+            login: '',
         }
         this.boardContent = '';
         this.onClickNewGame = this.onClickNewGame.bind(this);
         this.updateData = this.updateData.bind(this);
     }
 
-    updateData(value){
-        this.setState({ login: value });
+    updateData(value) {
+        this.setState({login: value});
         console.log("login in board ", value);
     }
 
     onClickNewGame(e) {
         console.log('this is:', this);
+        fetch('/games/new',
+            {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: {
+                    'userName': this.login
+                }
+            })
+            .then(data)
+            .then(function (data) {
+                console.log('Request succeeded with JSON response', data);
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
     }
 
     componentWillMount() {
@@ -65,7 +82,7 @@ class GameBoard extends Component {
 
         return (
             <>
-                <Login  updateData={this.updateData}/>
+                <Login updateData={this.updateData}/>
                 {this.boardContent}
                 <div>
                     <button onClick={this.onClickNewGame}>New game!</button>

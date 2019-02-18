@@ -19,6 +19,8 @@ app.get("/", function (req, res) {
 
 app.get('/games/list', controller.getGamesList);
 
+app.post('/games/new', controller.createNewGame)
+
 const server = app.listen(8081, () => {
     console.log(`Server is up and running on port 8081`);
 });
