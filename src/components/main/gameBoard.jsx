@@ -9,9 +9,20 @@ class GameBoard extends Component {
         super(props);
         this.state = {
             jsonData: '',
+            login : '',
         }
+        this.boardContent = '';
+        this.onClickNewGame = this.onClickNewGame.bind(this);
+        this.updateData = this.updateData.bind(this);
+    }
 
+    updateData(value){
+        this.setState({ login: value });
+        console.log("login in board ", value);
+    }
 
+    onClickNewGame(e) {
+        console.log('this is:', this);
     }
 
     componentWillMount() {
@@ -25,34 +36,43 @@ class GameBoard extends Component {
 
     setData(data) {
         this.setState({jsonData: data}, () => {
-            console.log(data,this.state)
+            console.log(data, this.state)
         })
     };
 
     render() {
         if (this.state.jsonData !== '') {
+            this.boardContent = (
+                <>
+                    <div className="row">
+                        {this.state.jsonData.map((hit) =>
+                            <div className="col-sm-3">
+                                <nav>
+                                    <Link to="/game">
+                                        <GameItem item={hit}/>
+                                    </Link>
+                                </nav>
+                            </div>
+                        )}
+                    </div>
+                </>
+            );
+
+        } else {
+            this.boardContent = (<p> Do not have new games. Сreate new!
+            </p>);
+        }
+
         return (
             <>
+                <Login  updateData={this.updateData}/>
+                {this.boardContent}
                 <div>
-                    <Login/>
-                </div>
-                <div className="row">
-                    {this.state.jsonData.map((hit) =>
-                        <div className="col-sm-3">
-                            <nav>
-                                <Link to="/game">
-                                    <GameItem item={hit}/>
-                                </Link>
-                            </nav>
-                        </div>
-                    )}
+                    <button onClick={this.onClickNewGame}>New game!</button>
                 </div>
             </>
-        );
-
-    }else{
-            return (<p>do not render</p>);
-        }}
+        )
+    }
 }
 
 export default GameBoard;

@@ -11,5 +11,9 @@ const getGamesList = (req, res) => {
         );
 }
 
+const createNewGame = (req, res) => {
+
+}
+
 
 module.exports = {getGamesList,}

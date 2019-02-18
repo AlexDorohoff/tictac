@@ -5,13 +5,22 @@ class Login extends Component {
         super(props);
         this.state =
             {
-                login: "Tommy Lee",
+                login: '',
             };
+        this.onLoginChange = this.onLoginChange.bind(this);
     }
+
+    onLoginChange(e) {
+        var val = e.target.value;
+        this.setState({login: val});
+        this.props.updateData(this.state.login);
+    }
+
     render() {
+        console.log(this.state);
         return (
             <div className='login'>
-                <input type="text"></input>
+                <input onChange={this.onLoginChange} type="text">{this.state.name}</input>
             </div>
         );
     }
