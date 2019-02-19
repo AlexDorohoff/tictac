@@ -1,8 +1,7 @@
-import Game from "./game.jsx";
+import Game from "../game/game.jsx";
 import {Route, Switch} from 'react-router-dom';
 
 import React, {Component} from 'react';
-import Test from "./test.jsx";
 import GameBoard from "./gameBoard.jsx";
 
 class URLRouter extends Component {
@@ -11,7 +10,6 @@ class URLRouter extends Component {
         return (
             <Switch>
                 <Route exact path="/" component={GameBoard} />
-                <Route exact path="/about" component={Test} />
                 <Route exact path="/game" component={Game} />
             </Switch>)
     }

@@ -1,10 +1,5 @@
 import React, {Component} from 'react';
-import Header from './header.jsx';
-import GameBoard from "./gameBoard.jsx";
-import Test from "./Test.jsx";
-import Game from "./Game.jsx";
-import Nav from "./nav.jsx";
-import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import Header from '../header/header.jsx';
 import URLRouter from "./router.jsx";
 
 class Wrap extends Component {

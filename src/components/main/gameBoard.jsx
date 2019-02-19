@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import GameItem from './gameItem.jsx';
-import Login from "./login.jsx";
+import GameItem from '../gameItem/gameItem.jsx';
+import Login from "../login/login.jsx";
 
 
 class GameBoard extends Component {
@@ -10,7 +10,7 @@ class GameBoard extends Component {
         this.state = {
             jsonData: '',
             login: '',
-            newLogin:'',
+            newLogin: '',
         };
         this.boardContent = '';
         this.onClickNewGame = this.onClickNewGame.bind(this);
@@ -28,24 +28,24 @@ class GameBoard extends Component {
     }
 
     onClickNewGame(handleSubmit) {
-        var reqest = {
-            method: 'post',
-            body: ({
-                userName: this.state.login
-            }),
-            headers: {'content-type': 'application/json'}
-        }
+        console.log(this.state.login)
         console.log('this is:', this.state);
-        console.log('request:', reqest);
-        fetch('/games/new', reqest)
+        fetch('/games/new', {
+            method: 'POST',
+            headers: {Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'},
+            body: JSON.stringify({
+                userName: this.state.login
+            })
+        })
             .then(function (response) {
                 console.log('response', response.json());
-                console.log('nwe login', this.state.newLogin);
+                return response;
             })
             .catch(function (error) {
                 console.log('Request failed', error);
             });
-    }
+    };
+
 
     componentWillMount() {
         fetch("/games/list")
@@ -60,7 +60,8 @@ class GameBoard extends Component {
         this.setState({jsonData: data}, () => {
             console.log(data, this.state)
         })
-    };
+    }
+    ;
 
     render() {
         if (this.state.jsonData !== '') {
