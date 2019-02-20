@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 
 class Game extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state =
+            {
+                hits: this.props,
+            };
+    }
 
 
     render() {
-        console.log('game');
+        console.log(JSON.stringify(this.props.match));
         return (
             <>
                 <div>game</div>

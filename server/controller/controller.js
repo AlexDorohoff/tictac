@@ -3,22 +3,22 @@ var mysqlQuery = require('../modules/mysql');
 const getGamesList = (req, res) => {
     res.json(
         [
-            {ouner: 'Chack', opponent: 'Mark', status: 'end'},
-            {ouner: 'Rachel', opponent: 'Ted', status: 'end'},
-            {ouner: 'Maeshal', opponent: 'lilly', status: 'ok'},
-            {ouner: 'Chack', opponent: 'Mark', status: 'end'},
-            {ouner: 'Rachel', opponent: 'Ted', status: 'end'},
-            {ouner: 'Maeshal', opponent: 'lilly', status: 'ok'}
+            {id_game: 1, ouner: 'Chack', opponent: 'Mark', status: 'end'},
+            {id_game: 2, ouner: 'Rachel', opponent: 'Ted', status: 'end'},
+            {id_game: 3, ouner: 'Maeshal', opponent: 'lilly', status: 'ok'},
+            {id_game: 4, ouner: 'Chack', opponent: 'Mark', status: 'end'},
+            {id_game: 5, ouner: 'Rachel', opponent: 'Ted', status: 'end'},
+            {id_game: 6, ouner: 'Maeshal', opponent: 'lilly', status: 'ok'}
         ]
     );
 };
 
 const createNewGame = (req, res) => {
-    if (req.body.userName !== '') {
+    var name = req.body.userName
+    if (!mysqlQuery.isUserExist(req.body.userName)) {
         mysqlQuery.createNewUser(req.body.userName, function (err) {
             if (err) {
                 returnError(res, 500, err.code);
-
             }
         });
     } else {
@@ -39,7 +39,7 @@ const NewGame = function (userName, res) {
     );
 };
 
-const returnError = function(res, code, message) {
+const returnError = function (res, code, message) {
     res.json(
         {
             "status": "error",

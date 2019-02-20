@@ -5,12 +5,11 @@ import React, {Component} from 'react';
 import GameBoard from "./gameBoard.jsx";
 
 class URLRouter extends Component {
-
     render() {
         return (
             <Switch>
                 <Route exact path="/" component={GameBoard} />
-                <Route exact path="/game" component={Game} />
+                <Route exact path="/game/:id?" component={Game} />
             </Switch>)
     }
 }

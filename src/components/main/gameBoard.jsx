@@ -29,7 +29,6 @@ class GameBoard extends Component {
 
     onClickNewGame(handleSubmit) {
         console.log(this.state.login)
-        console.log('this is:', this.state);
         fetch('/games/new', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -71,7 +70,7 @@ class GameBoard extends Component {
                         {this.state.jsonData.map((hit) =>
                             <div className="col-sm-3">
                                 <nav>
-                                    <Link to="/game">
+                                    <Link to={'/game/' + hit.id_game}>
                                         <GameItem item={hit}/>
                                     </Link>
                                 </nav>
@@ -82,17 +81,16 @@ class GameBoard extends Component {
             );
 
         } else {
-            this.boardContent = (<p> Do not have new games. Сreate new!
-            </p>);
+            this.boardContent = (<p> Do not have new games. Сreate new!</p>);
         }
 
         return (
             <>
                 <Login updateData={this.updateData}/>
                 {this.boardContent}
-                <div>
-                    <button onClick={this.onClickNewGame}>New game!</button>
-                </div>
+                <Link to="/game">
+                    <div onClick={this.onClickNewGame}>New game!</div>
+                </Link>
             </>
         )
     }
