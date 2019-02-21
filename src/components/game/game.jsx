@@ -9,26 +9,35 @@ class Game extends Component {
             };
     }
 
+    componentDidMount() {
+        console.log(this.props);
+    }
 
     render() {
-        console.log(JSON.stringify(this.props.match));
+        console.log('props ', this.props.match);
         return (
             <>
-                <div>game</div>
-                <div className="grid">
-                    <div className="col-sm-4 panel">1</div>
-                    <div className="col-sm-4 panel">2</div>
-                    <div className="col-sm-4 panel">3</div>
-                    <div className="col-sm-4 panel">4</div>
-                    <div className="col-sm-4 panel">5</div>
-                    <div className="col-sm-4 panel">6</div>
-                    <div className="col-sm-4 panel">7</div>
-                    <div className="col-sm-4 panel">8</div>
-                    <div className="col-sm-4 panel">9</div>
+                <div className={'login'}>
+                    <div className={'owner'}>{this.props.match.params.owner}<span className={'zero'}>&#9675;</span></div>
+                    <div className={'opponent'}><span className={'tac'}>&#10006;</span>{this.props.match.params.opponent}</div>
+                </div>
+                <div className={'play_board'}>
+                    <div className={'grid'}>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                    </div>
                 </div>
             </>
         );
     }
+
 }
 
 export default Game;

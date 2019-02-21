@@ -18,11 +18,11 @@ const createNewGame = (req, res) => {
     if (!mysqlQuery.isUserExist(req.body.userName)) {
         mysqlQuery.createNewUser(req.body.userName, function (err) {
             if (err) {
-                returnError(res, 500, err.code);
+                res.send(res, 500, err.code);
             }
         });
     } else {
-        console.log("null parameters");
+        console.log("make a new game");
     }
 
 };
