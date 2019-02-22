@@ -2,7 +2,7 @@ body {
 
 }
 
-p{
+p {
     margin: 0;
 }
 
@@ -11,7 +11,7 @@ a {
     color: #ffffff !important;
 }
 
-a:hover, a:focus{
+a:hover, a:focus {
     text-decoration: none !important;
     color: #808080 !important;
 }
@@ -51,13 +51,13 @@ input, input :active, input:focus {
 .panel {
     background-color: darkgray;
     overflow: hidden;
-    padding-left:10px;
+    padding-left: 10px;
     margin: 4px;
     position: relative;
     flex: 1 0 auto;
 }
 
-.grid{
+.grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 6px 6px;
@@ -66,15 +66,15 @@ input, input :active, input:focus {
     height: 300px;
 }
 
-.row
-{
-    padding:15px;
-}
-.col-sm-3{
- padding: 0 !important;
+.row {
+    padding: 15px;
 }
 
-.add{
+.col-sm-3 {
+    padding: 0 !important;
+}
+
+.add {
     width: 40px;
     height: 40px;
     background-color: green;
@@ -85,24 +85,41 @@ input, input :active, input:focus {
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
 }
 
-.opponent{
+.opponent {
     float: right;
 }
 
-.owner{
+.owner {
     float: left;
 }
 
-.login{
+.login {
     overflow: hidden;
 }
 
-.play_board{
+.play_board {
     background: #efce47;
     width: 300px;
     margin: auto;
 }
 
-.tile{
+.tile {
     background-color: #F2F2F2;
+}
+
+.tic {
+    font-size: 30px;
+    color: darkgray;
+}
+
+.tac {
+    font-size: 30px;
+    color: cornflowerblue;
+
+}
+
+.user_name {
+    position: relative;
+    top: -4px;
+    margin: 4px;
 }
