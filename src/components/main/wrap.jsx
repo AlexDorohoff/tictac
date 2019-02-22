@@ -6,9 +6,7 @@ class Wrap extends Component {
     render() {
         return (
             <>
-                <div>
-                   <Header/>
-                </div>
+                <Header/>
                 <div className={'main'}>
                     <div>
                         <URLRouter/>

@@ -2,12 +2,18 @@ body {
 
 }
 
-p{
+p {
     margin: 0;
 }
 
-a, a:hover, a:focus {
-    text-decoration: none
+a {
+    text-decoration: none !important;
+    color: #ffffff !important;
+}
+
+a:hover, a:focus {
+    text-decoration: none !important;
+    color: #808080 !important;
 }
 
 input, input :active, input:focus {
@@ -29,11 +35,13 @@ input, input :active, input:focus {
     color: #ffffff;
     background-color: black;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+    position: relative;
 }
 
 .main {
     background-color: #F2F2F2;
     padding: 20px;
+    overflow: hidden;
 }
 
 .wrapper {
@@ -43,23 +51,75 @@ input, input :active, input:focus {
 .panel {
     background-color: darkgray;
     overflow: hidden;
-    padding-left:10px;
+    padding-left: 10px;
     margin: 4px;
     position: relative;
     flex: 1 0 auto;
 }
 
-.grid{
+.grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px 20px;
+    grid-gap: 6px 6px;
     justify-content: space-between;
+    margin: auto;
+    height: 300px;
 }
 
-.row
-{
-    padding:15px;
+.row {
+    padding: 15px;
 }
-.col-sm-3{
- padding: 0 !important;
+
+.col-sm-3 {
+    padding: 0 !important;
+}
+
+.add {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    border-radius: 40px 40px;
+    float: right;
+    text-align: center;
+    padding-top: 6px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.opponent {
+    float: right;
+}
+
+.owner {
+    float: left;
+}
+
+.login {
+    overflow: hidden;
+}
+
+.play_board {
+    background: #efce47;
+    width: 300px;
+    margin: auto;
+}
+
+.tile {
+    background-color: #F2F2F2;
+}
+
+.tic {
+    font-size: 30px;
+    color: darkgray;
+}
+
+.tac {
+    font-size: 30px;
+    color: cornflowerblue;
+
+}
+
+.user_name {
+    position: relative;
+    top: -4px;
+    margin: 4px;
 }

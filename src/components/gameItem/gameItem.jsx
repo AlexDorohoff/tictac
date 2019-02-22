@@ -16,9 +16,8 @@ class GameItem extends Component {
         console.log(this.state);
         return (
             <div className="panel">
-                <p className="">{this.state.item.ouner || ''}</p>
+                <p className="">{this.state.item.owner || ''}</p>
                 <p className="">{this.state.item.opponent || ''}</p>
-                <p>{this.state.item.status || ''}</p>
             </div>)
     }
 }

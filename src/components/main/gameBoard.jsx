@@ -3,17 +3,24 @@ import {Link} from 'react-router-dom';
 import GameItem from '../gameItem/gameItem.jsx';
 import Login from "../login/login.jsx";
 
+const jsonData = [
+    {id_game: 1, owner: 'Chack', opponent: 'Mark', status: 'end'},
+    {id_game: 2, owner: 'Rachel', opponent: 'Ted', status: 'end'},
+    {id_game: 3, owner: 'Maeshal', opponent: 'lilly', status: 'ok'},
+    {id_game: 4, owner: 'Chack', opponent: 'Mark', status: 'end'},
+    {id_game: 5, owner: 'Rachel', opponent: 'Ted', status: 'end'},
+    {id_game: 6, owner: 'Maeshal', opponent: 'lilly', status: 'ok'}
+];
 
 class GameBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jsonData: '',
             login: '',
             newLogin: '',
         };
         this.boardContent = '';
-        this.onClickNewGame = this.onClickNewGame.bind(this);
+        /**this.onClickNewGame = this.onClickNewGame.bind(this);**/
         this.updateData = this.updateData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -24,11 +31,13 @@ class GameBoard extends Component {
     }
 
     updateData(value) {
+        console.log('value',value);
         this.setState({login: value});
     }
 
-    onClickNewGame(handleSubmit) {
+    /**  onClickNewGame(handleSubmit) {
         console.log(this.state.login)
+
         fetch('/games/new', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -45,8 +54,7 @@ class GameBoard extends Component {
             });
     };
 
-
-    componentWillMount() {
+     /** componentDidMount() {
         fetch("/games/list")
             .then(response => response.json())
             .then(data => (this.setData(data)))
@@ -55,22 +63,24 @@ class GameBoard extends Component {
             })
     }
 
-    setData(data) {
-        this.setState({jsonData: data}, () => {
-            console.log(data, this.state)
-        })
-    }
-    ;
 
+     setData(data)
+     {
+    this.setState({jsonData: data}, () => {
+        console.log(data, this.state)
+    })
+}
+     ;
+     **/
     render() {
         if (this.state.jsonData !== '') {
             this.boardContent = (
                 <>
                     <div className="row">
-                        {this.state.jsonData.map((hit) =>
+                        {jsonData.map((hit) =>
                             <div className="col-sm-3">
                                 <nav>
-                                    <Link to={'/game/' + hit.id_game}>
+                                    <Link to={'/game/' + hit.id_game + '/' + hit.owner + '/' + hit.opponent}>
                                         <GameItem item={hit}/>
                                     </Link>
                                 </nav>
@@ -88,8 +98,8 @@ class GameBoard extends Component {
             <>
                 <Login updateData={this.updateData}/>
                 {this.boardContent}
-                <Link to="/game">
-                    <div onClick={this.onClickNewGame}>New game!</div>
+                <Link to={'/game/' + 0 + '/' + this.state.login}>
+                    <div className={'add'} onClick={this.onClickNewGame}>&#10010;</div>
                 </Link>
             </>
         )
