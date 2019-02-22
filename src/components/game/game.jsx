@@ -8,14 +8,21 @@ class Game extends Component {
                 hits: this.props,
                 symb: {background: ''},
                 flag: '',
+                isOpen: false,
             };
         this.onClickTile = this.onClickTile.bind(this);
     }
 
+
+    handleClick(e) {
+    }
+
     onClickTile(e) {
         this.setState({
-            flag:true
-        })
+            symb: {background: 'white'}
+        });
+        this.setState({isOpen: 'true'})
+        console.log(this.state.symb);
     }
 
     componentDidMount() {
@@ -37,15 +44,42 @@ class Game extends Component {
                 </div>
                 <div className={'play_board'}>
                     <div className={'grid'}>
-                        <div className="tile" style={this.state.symb} backgroundImage={this.state.flag === true ? 'logo.svg': 'logo2.svg'} id={"1"} onClick={this.onClickTile}></div>
-                        <div className="tile" style={this.state.symb} id={"2"} onClick={this.onClickTile}></div>
-                        <div className="tile" style={this.state.symb} id={"3"} onClick={this.onClickTile}></div>
-                        <div className="tile" style={this.state.symb} id={"4"} onClick={this.onClickTile}></div>
-                        <div className="tile" style={this.state.symb} id={"5"} onClick={this.onClickTile}></div>
-                        <div className="tile" style={this.state.symb} id={"6"} onClick={this.onClickTile}></div>
-                        <div className="tile" style={this.state.symb} id={"7"} onClick={this.onClickTile}></div>
-                        <div className="tile" style={this.state.symb} id={"8"} onClick={this.onClickTile}></div>
-                        <div className="tile" style={this.state.symb} id={"9"} onClick={this.onClickTile}></div>
+                        <div className="tile" style={this.state.symb} id={"1"} onClick={this.onClickTile}>
+                            {this.state.isOpen && (
+                                <b>opened!</b>
+                            )}</div>
+                        <div className="tile" style={this.state.symb} id={"2"} onClick={this.onClickTile}>
+                            {this.state.isOpen && (
+                                <b>opened!</b>)}
+                        </div>
+                        <div className="tile" style={this.state.symb} id={"3"} onClick={this.onClickTile}>
+                            {this.state.isOpen && (
+                                <b>opened!</b>)}
+                        </div>
+                        <div className="tile" style={this.state.symb} id={"4"} onClick={this.onClickTile}>
+                            {this.state.isOpen && (
+                                <b>opened!</b>)}
+                        </div>
+                        <div className="tile" style={this.state.symb} id={"5"} onClick={this.onClickTile}>
+                            {this.state.isOpen && (
+                                <b>opened!</b>)}
+                        </div>
+                        <div className="tile" style={this.state.symb} id={"6"} onClick={this.onClickTile}>
+                            {this.state.isOpen && (
+                                <b>opened!</b>)}
+                        </div>
+                        <div className="tile" style={this.state.symb} id={"7"} onClick={this.onClickTile}>
+                            {this.state.isOpen && (
+                                <b>opened!</b>)}
+                        </div>
+                        <div className="tile" style={this.state.symb} id={"8"} onClick={this.onClickTile}>
+                            {this.state.isOpen && (
+                                <b>opened!</b>)}
+                        </div>
+                        <div className="tile" style={this.state.symb} id={"9"} onClick={this.onClickTile}>
+                            {this.state.isOpen && (
+                                <b>opened!</b>)}
+                        </div>
                     </div>
                 </div>
             </>
