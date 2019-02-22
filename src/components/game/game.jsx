@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Tile from '../tile/tile.jsx'
 
 class Game extends Component {
     constructor(props) {
@@ -10,20 +11,13 @@ class Game extends Component {
                 flag: '',
                 isOpen: false,
             };
-        this.onClickTile = this.onClickTile.bind(this);
     }
 
 
     handleClick(e) {
     }
 
-    onClickTile(e) {
-        this.setState({
-            symb: {background: 'white'}
-        });
-        this.setState({isOpen: 'true'})
-        console.log(this.state.symb);
-    }
+
 
     componentDidMount() {
         console.log(this.props);
@@ -44,10 +38,7 @@ class Game extends Component {
                 </div>
                 <div className={'play_board'}>
                     <div className={'grid'}>
-                        <div className="tile" style={this.state.symb} id={"1"} onClick={this.onClickTile}>
-                            {this.state.isOpen && (
-                                <b>opened!</b>
-                            )}</div>
+                        <Tile/>
                         <div className="tile" style={this.state.symb} id={"2"} onClick={this.onClickTile}>
                             {this.state.isOpen && (
                                 <b>opened!</b>)}
