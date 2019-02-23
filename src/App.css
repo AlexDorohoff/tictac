@@ -105,11 +105,19 @@ input, input :active, input:focus {
 
 .tile {
     background-color: #F2F2F2;
+    position: relative;
 }
 
 .tic {
     font-size: 30px;
     color: darkgray;
+}
+
+.big_tic{
+    font-size: 120px;
+    color: darkgray;
+    position: absolute;
+    top: -50px;
 }
 
 .tac {

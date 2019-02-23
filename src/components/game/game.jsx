@@ -12,19 +12,17 @@ class Game extends Component {
                 isOpen: false,
             };
     }
-
-
-    handleClick(e) {
-    }
-
-
-
     componentDidMount() {
         console.log(this.props);
     }
 
     render() {
         console.log('props ', this.props.match);
+        const tileList =[]
+        for(var i=0; i<9; i++)
+        {
+            tileList.push(<Tile/>)
+        }
         return (
             <>
                 <div className={'login'}>
@@ -38,39 +36,7 @@ class Game extends Component {
                 </div>
                 <div className={'play_board'}>
                     <div className={'grid'}>
-                        <Tile/>
-                        <div className="tile" style={this.state.symb} id={"2"} onClick={this.onClickTile}>
-                            {this.state.isOpen && (
-                                <b>opened!</b>)}
-                        </div>
-                        <div className="tile" style={this.state.symb} id={"3"} onClick={this.onClickTile}>
-                            {this.state.isOpen && (
-                                <b>opened!</b>)}
-                        </div>
-                        <div className="tile" style={this.state.symb} id={"4"} onClick={this.onClickTile}>
-                            {this.state.isOpen && (
-                                <b>opened!</b>)}
-                        </div>
-                        <div className="tile" style={this.state.symb} id={"5"} onClick={this.onClickTile}>
-                            {this.state.isOpen && (
-                                <b>opened!</b>)}
-                        </div>
-                        <div className="tile" style={this.state.symb} id={"6"} onClick={this.onClickTile}>
-                            {this.state.isOpen && (
-                                <b>opened!</b>)}
-                        </div>
-                        <div className="tile" style={this.state.symb} id={"7"} onClick={this.onClickTile}>
-                            {this.state.isOpen && (
-                                <b>opened!</b>)}
-                        </div>
-                        <div className="tile" style={this.state.symb} id={"8"} onClick={this.onClickTile}>
-                            {this.state.isOpen && (
-                                <b>opened!</b>)}
-                        </div>
-                        <div className="tile" style={this.state.symb} id={"9"} onClick={this.onClickTile}>
-                            {this.state.isOpen && (
-                                <b>opened!</b>)}
-                        </div>
+                        {tileList}
                     </div>
                 </div>
             </>

@@ -14,9 +14,6 @@ class Tile extends Component {
     }
 
     onClickTile(e) {
-        this.setState({
-            symb: {background: 'white'}
-        });
         this.setState({isOpen: 'true'})
         console.log(this.state.symb);
     }
@@ -26,7 +23,7 @@ class Tile extends Component {
         return (
             <div className="tile" style={this.state.symb} id={"1"} onClick={this.onClickTile}>
                 {this.state.isOpen && (
-                    <b>opened!</b>
+                    <span className={'big_tic'}>&#10005;</span>
                 )}</div>
         )
     }
