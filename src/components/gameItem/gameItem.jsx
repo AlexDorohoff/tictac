@@ -16,11 +16,26 @@ class GameItem extends Component {
 
     componentDidMount() {
         if (this.props.item.status == 'done') {
-            console.log('done');
             this.setState({
                 color:
                     {
-                        background: 'black'
+                        background: '#858683'
+                    }
+            });
+        }else if (this.props.item.status == 'ready')
+        {
+            this.setState({
+                color:
+                    {
+                        background: '#B6B6B4'
+                    }
+            });
+        }else if (this.props.item.status == 'playing')
+        {
+            this.setState({
+                color:
+                    {
+                        background: '#DCDCDB'
                     }
             });
         }
