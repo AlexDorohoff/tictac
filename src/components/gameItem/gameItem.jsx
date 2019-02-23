@@ -7,18 +7,34 @@ class GameItem extends Component {
         super(props);
         this.state =
             {
-                item: this.props.item
+                item: this.props.item,
+                color: {background: ''},
+
             };
 
     }
 
+    componentDidMount() {
+        if (this.props.item.status == 'done') {
+            console.log('done');
+            this.setState({
+                color:
+                    {
+                        background: 'black'
+                    }
+            });
+        }
+    }
+
     render() {
+
         console.log(this.state);
         return (
-            <div className="panel">
+            <div className="panel" style={this.state.color}>
                 <p className="">{this.state.item.owner || ''}</p>
                 <p className="">{this.state.item.opponent || ''}</p>
             </div>)
     }
 }
+
 export default GameItem;

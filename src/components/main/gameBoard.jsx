@@ -4,12 +4,12 @@ import GameItem from '../gameItem/gameItem.jsx';
 import Login from "../login/login.jsx";
 
 const jsonData = [
-    {id_game: 1, owner: 'Chack', opponent: 'Mark', status: 'end'},
-    {id_game: 2, owner: 'Rachel', opponent: 'Ted', status: 'end'},
-    {id_game: 3, owner: 'Maeshal', opponent: 'lilly', status: 'ok'},
-    {id_game: 4, owner: 'Chack', opponent: 'Mark', status: 'end'},
-    {id_game: 5, owner: 'Rachel', opponent: 'Ted', status: 'end'},
-    {id_game: 6, owner: 'Maeshal', opponent: 'lilly', status: 'ok'}
+    {id_game: 1, owner: 'Chack', opponent: 'Mark', status: 'done'},
+    {id_game: 2, owner: 'Rachel', opponent: 'Ted', status: 'done'},
+    {id_game: 3, owner: 'Maeshal', opponent: 'lilly', status: 'ready'},
+    {id_game: 4, owner: 'Chack', opponent: 'Mark', status: 'done'},
+    {id_game: 5, owner: 'Rachel', opponent: 'Ted', status: 'ready'},
+    {id_game: 6, owner: 'Maeshal', opponent: 'lilly', status: 'playing'}
 ];
 
 class GameBoard extends Component {
