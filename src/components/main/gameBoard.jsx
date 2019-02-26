@@ -2,21 +2,23 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import GameItem from '../gameItem/gameItem.jsx';
 import Login from "../login/login.jsx";
+import jsonData from "../../api.json";
 
-const jsonData = [
-    {id_game: 1, owner: 'Chack', opponent: 'Mark', status: 'done'},
-    {id_game: 2, owner: 'Rachel', opponent: 'Ted', status: 'done'},
-    {id_game: 3, owner: 'Maeshal', opponent: 'lilly', status: 'ready'},
-    {id_game: 4, owner: 'Chack', opponent: 'Mark', status: 'done'},
-    {id_game: 5, owner: 'Rachel', opponent: 'Ted', status: 'ready'},
-    {id_game: 6, owner: 'Maeshal', opponent: 'lilly', status: 'playing'}
-];
+/**const jsonData = [
+    {id_game: 1, owner: 'Chack', opponent: 'Mark', status: 'playing', time: '00:00:35'},
+    {id_game: 2, owner: 'Rachel', opponent: 'Ted', status: 'playing', time: '00:01:35'},
+    {id_game: 3, owner: 'Marshal', status: 'ready'},
+    {id_game: 4, owner: 'Chack', opponent: 'Mark', status: 'playing', time: '00:00:45'},
+    {id_game: 5, owner: 'Rachel', status: 'ready'},
+    {id_game: 6, owner: 'Marshal', opponent: 'lilly', status: 'done', time: '00:01:05'},
+    {id_game: 6, owner: 'Kermit', opponent: 'Grover', status: 'done', time: '00:01:05'}
+];**/
 
 class GameBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            login: '',
+            login: 'undefined',
             newLogin: '',
         };
         this.boardContent = '';
@@ -31,7 +33,7 @@ class GameBoard extends Component {
     }
 
     updateData(value) {
-        console.log('value',value);
+        console.log('value', value);
         this.setState({login: value});
     }
 
@@ -73,6 +75,7 @@ class GameBoard extends Component {
      ;
      **/
     render() {
+        console.log(jsonData);
         if (this.state.jsonData !== '') {
             this.boardContent = (
                 <>
@@ -80,7 +83,7 @@ class GameBoard extends Component {
                         {jsonData.map((hit) =>
                             <div className="col-sm-3">
                                 <nav>
-                                    <Link to={'/game/' + hit.id_game + '/' + hit.owner + '/' + hit.opponent}>
+                                    <Link to={'/game/' + hit.id_game + '/' + this.state.login}>
                                         <GameItem item={hit}/>
                                     </Link>
                                 </nav>
@@ -93,13 +96,12 @@ class GameBoard extends Component {
         } else {
             this.boardContent = (<p> Do not have new games. Сreate new!</p>);
         }
-
         return (
             <>
                 <Login updateData={this.updateData}/>
                 {this.boardContent}
                 <Link to={'/game/' + 0 + '/' + this.state.login}>
-                    <div className={'add'} onClick={this.onClickNewGame}>&#10010;</div>
+                    <div className={'add btn-success'} onClick={this.onClickNewGame}>&#10010;</div>
                 </Link>
             </>
         )

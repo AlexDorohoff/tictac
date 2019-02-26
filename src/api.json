@@ -1,0 +1,49 @@
+[
+  {
+    "id_game": 0,
+    "owner": "Chack",
+    "opponent": "Mark",
+    "status": "playing",
+    "time": "00:00:35"
+  },
+  {
+    "id_game": 1,
+    "owner": "Rachel",
+    "opponent": "Ted",
+    "status": "playing",
+    "time": "00:01:35"
+  },
+  {
+    "id_game": 2,
+    "owner": "Marshal",
+    "status": "ready"
+  },
+  {
+    "id_game": 3,
+    "owner": "Chack",
+    "opponent": "Mark",
+    "status": "playing",
+    "time": "00:00:45"
+  },
+  {
+    "id_game": 4,
+    "owner": "Rachel",
+    "status": "ready"
+  },
+  {
+    "id_game": 5,
+    "owner": "Marshal",
+    "opponent": "lilly",
+    "status": "done",
+    "time": "00:01:05",
+    "winner": "Marshal"
+  },
+  {
+    "id_game": 6,
+    "owner": "Kermit",
+    "opponent": "Grover",
+    "status": "done",
+    "time": "00:01:05",
+    "winner": "Kermit"
+  }
+]
