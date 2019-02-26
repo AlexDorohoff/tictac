@@ -7,15 +7,16 @@ class Tile extends Component {
             {
                 hits: this.props,
                 symb: {background: ''},
-                flag: '',
                 isOpen: false,
             };
         this.onClickTile = this.onClickTile.bind(this);
     }
 
     onClickTile(e) {
-        this.setState({isOpen: 'true'})
-        console.log(this.state.symb);
+        if (this.props.playng) {
+            this.setState({isOpen: 'true'})
+            console.log(this.state.symb);
+        }
     }
 
     render() {
