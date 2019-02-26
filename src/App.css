@@ -8,12 +8,12 @@ p {
 
 a {
     text-decoration: none !important;
-    color: #ffffff !important;
+    color: #FFFFFF !important;
 }
 
 a:hover, a:focus {
     text-decoration: none !important;
-    color: #808080 !important;
+    color: #C9C9C9 !important;
 }
 
 input, input :active, input:focus {
@@ -51,10 +51,10 @@ input, input :active, input:focus {
 .panel {
     background-color: darkgray;
     overflow: hidden;
-    padding-left: 10px;
-    margin: 4px;
+    margin: 5px;
     position: relative;
     flex: 1 0 auto;
+    height: 105px;
 }
 
 .grid {
@@ -106,6 +106,7 @@ input, input :active, input:focus {
 .tile {
     background-color: #F2F2F2;
     position: relative;
+    overflow: hidden;
 }
 
 .tic {
@@ -130,4 +131,36 @@ input, input :active, input:focus {
     position: relative;
     top: -4px;
     margin: 4px;
+}
+
+.not_clickable{
+    grid-area: click-guard;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.btn_wrapper{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.timer{
+    color: #282C34;
+    font-size: small;
+    float: right;
+    margin-right: 5px;
+}
+
+.item_owner{
+
+}
+
+.item_opponent{
+
+}
+
+.item_login{
+    padding-left: 10px;
+    padding-right: 10px;
 }
