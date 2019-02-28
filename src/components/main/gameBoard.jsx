@@ -29,11 +29,9 @@ class GameBoard extends Component {
 
     handleSubmit(response) {
         this.setState({newLogin: response});
-        console.log(this.state.newLogin);
     }
 
     updateData(value) {
-        console.log('value', value);
         this.setState({login: value});
     }
 
@@ -75,7 +73,6 @@ class GameBoard extends Component {
      ;
      **/
     render() {
-        console.log(jsonData);
         if (this.state.jsonData !== '') {
             this.boardContent = (
                 <>
@@ -100,7 +97,7 @@ class GameBoard extends Component {
             <>
                 <Login updateData={this.updateData}/>
                 {this.boardContent}
-                <Link to={'/game/' + 0 + '/' + this.state.login}>
+                <Link to={'/game/' + this.state.login}>
                     <div className={'add btn-success'} onClick={this.onClickNewGame}>&#10010;</div>
                 </Link>
             </>
