@@ -2,17 +2,18 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import GameItem from '../gameItem/gameItem.jsx';
 import Login from "../login/login.jsx";
-import jsonData from "../../api.json";
 
-/**const jsonData = [
-    {id_game: 1, owner: 'Chack', opponent: 'Mark', status: 'playing', time: '00:00:35'},
-    {id_game: 2, owner: 'Rachel', opponent: 'Ted', status: 'playing', time: '00:01:35'},
-    {id_game: 3, owner: 'Marshal', status: 'ready'},
-    {id_game: 4, owner: 'Chack', opponent: 'Mark', status: 'playing', time: '00:00:45'},
-    {id_game: 5, owner: 'Rachel', status: 'ready'},
-    {id_game: 6, owner: 'Marshal', opponent: 'lilly', status: 'done', time: '00:01:05'},
-    {id_game: 6, owner: 'Kermit', opponent: 'Grover', status: 'done', time: '00:01:05'}
-];**/
+/**mport jsonData from "../../api.json";
+
+ /**const jsonData = [
+ {id_game: 1, owner: 'Chack', opponent: 'Mark', status: 'playing', time: '00:00:35'},
+ {id_game: 2, owner: 'Rachel', opponent: 'Ted', status: 'playing', time: '00:01:35'},
+ {id_game: 3, owner: 'Marshal', status: 'ready'},
+ {id_game: 4, owner: 'Chack', opponent: 'Mark', status: 'playing', time: '00:00:45'},
+ {id_game: 5, owner: 'Rachel', status: 'ready'},
+ {id_game: 6, owner: 'Marshal', opponent: 'lilly', status: 'done', time: '00:01:05'},
+ {id_game: 6, owner: 'Kermit', opponent: 'Grover', status: 'done', time: '00:01:05'}
+ ];**/
 
 class GameBoard extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class GameBoard extends Component {
         this.state = {
             login: 'undefined',
             newLogin: '',
+            jsonData: ''
         };
         this.boardContent = '';
         /**this.onClickNewGame = this.onClickNewGame.bind(this);**/
@@ -52,9 +54,9 @@ class GameBoard extends Component {
             .catch(function (error) {
                 console.log('Request failed', error);
             });
-    };
+    }; */
 
-     /** componentDidMount() {
+    componentDidMount() {
         fetch("/games/list")
             .then(response => response.json())
             .then(data => (this.setData(data)))
@@ -64,20 +66,17 @@ class GameBoard extends Component {
     }
 
 
-     setData(data)
-     {
-    this.setState({jsonData: data}, () => {
-        console.log(data, this.state)
-    })
-}
-     ;
-     **/
+    setData(data) {
+        this.setState({jsonData: data}, () => {
+        })
+    };
+
     render() {
         if (this.state.jsonData !== '') {
             this.boardContent = (
                 <>
                     <div className="row">
-                        {jsonData.map((hit) =>
+                        {this.state.jsonData.map((hit) =>
                             <div className="col-sm-3">
                                 <nav>
                                     <Link to={'/game/' + hit.id_game + '/' + this.state.login}>
