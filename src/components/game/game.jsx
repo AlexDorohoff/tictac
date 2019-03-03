@@ -17,7 +17,12 @@ class Game extends Component {
                 },
             }
         ;
+
+        //// добавить третье, базовое состояние, стили прописать в компоненте
+
         this.gameData = '';
+
+
         this.notPlayng = {
             play_board_theme: {background: '#B6B6B4'},
             login_theme: {color: '#B6B6B4'},
@@ -44,8 +49,8 @@ class Game extends Component {
     ;
 
     control() {
-        console.log('game data in control', this.gameData, this.gameData.length);
-        if (this.gameData.length !== 0) {
+        console.log('game data in control', this.gameData);
+        if (this.gameData !== undefined) {
             if (this.gameData.owner !== undefined) {
                 if (this.gameData.opponent !== undefined) {
                     this.setState({
@@ -63,10 +68,13 @@ class Game extends Component {
                 }
             }
         } else {
-            this.setState({
-                ownerLogin: this.props.match.params.owner,
-                play: true,
-            })
+            if (this.props.match.params.owner !== "undefined") {
+                console.log("in control, login not undefi");
+                this.setState({
+                    ownerLogin: this.props.match.params.owner,
+                    play: true,
+                })
+            }
         }
     }
 
@@ -117,28 +125,30 @@ class Game extends Component {
             this.gameData = this.state.jsonData[this.props.match.params.id];
         }
         console.log('game data', this.gameData);
-        if (this.gameData === '') {
-            console.log('owner login',this.state.ownerLogin);
-            if (this.state.ownerLogin === "undefined") {
-                console.log('1');
-                return (<div>Please back and put your name</div>)
-            } else {
-                return (
-                    console.log('2'),
-                    <div>{pageContent}</div>
-                );
-            }
-        } else {
-            if (this.gameData.opponent === undefined) {
+        if (this.gameData !== undefined) {
+            if (this.gameData.length !== 0) {
+                console.log('owner login', this.state.ownerLogin);
+                console.log('opponent login', this.state.opponentLogin);
                 if (this.state.opponentLogin === "undefined") {
+                    console.log('1');
                     return (<div>Please back and put your name</div>)
                 } else {
                     return (
-                        <div>{pageContent}</div>)
+                        console.log('2'),
+                            <div>{pageContent}</div>
+                    );
                 }
             } else {
-                return <div>{pageContent}</div>
+                return <div>this is it</div>
             }
+        } else {
+            if (this.state.opponentLogin === undefined) {
+                return (<div>Please back and put your name</div>)
+            } else {
+                return (
+                    <div>{pageContent}</div>)
+            }
+
         }
     }
 }
