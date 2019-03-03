@@ -10,6 +10,7 @@ class URLRouter extends Component {
             <Switch>
                 <Route exact path="/" component={GameBoard} />
                 <Route exact path="/game/:id?/:owner/:opponent?" component={Game} />
+                <Route component={GameBoard}/>
             </Switch>)
     }
 }

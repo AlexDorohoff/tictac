@@ -50,12 +50,14 @@ class Game extends Component {
                         ownerLogin: this.gameData.owner,
                         opponentLogin: this.gameData.opponent,
                         style: this.notPlaying,
+                        time:this.gameData.time
                     });
                 } else {
                     this.setState({
                         ownerLogin: this.gameData.owner,
                         opponentLogin: this.props.match.params.owner,
                         play: true,
+                        time: "00:00:00"
                     })
                 }
             }
@@ -64,6 +66,7 @@ class Game extends Component {
                 this.setState({
                     ownerLogin: this.props.match.params.owner,
                     play: true,
+                    time: "00:00:00",
                 })
             }
         }
@@ -81,40 +84,38 @@ class Game extends Component {
         let tileList = this.makeTileList();
         const pageContent =
             <>
-            <div className={'login'}>
-                <div className={'owner'}>
+                <div className={'login'}>
+                    <div className={'owner'}>
                                 <span className={'user_name'}
                                       style={this.state.style.login_theme}>{this.state.ownerLogin}</span>
-                    <span className={'tic'} style={this.state.style.sprite_theme}>&#10005;</span>
-                </div>
-                <div className={'opponent'}>
-                    <span className={'tac'} style={this.state.style.sprite_theme}>&#9675;</span>
-                    <span className={'user_name'}
-                          style={this.state.style.login_theme}>{this.state.opponentLogin || '   '}</span>
-                </div>
-            </div>
-            <div className="not_clickable">
-                <div className={'play_board'} style={this.state.style.play_board_theme}>
-                    <div className={'grid'}>
-                        {tileList}
+                        <span className={'tic'} style={this.state.style.sprite_theme}>&#10005;</span>
+                    </div>
+                    <div className={'opponent'}>
+                        <span className={'tac'} style={this.state.style.sprite_theme}>&#9675;</span>
+                        <span className={'user_name'}
+                              style={this.state.style.login_theme}>{this.state.opponentLogin || '   '}</span>
                     </div>
                 </div>
-            </div>
-            <div className={'time_wrapper'}>
-                <div className={'time'}>
+                <div className="not_clickable">
+                    <div className={'play_board'} style={this.state.style.play_board_theme}>
+                        <div className={'grid'}>
+                            {tileList}
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className={'timer'}>
-
-            </div>
-            <div className={'btn_wrapper'}>
-                <div className={'btn btn-success'}>
-                    <Link to={'/'}>
-                        {this.state.style.btn_text}
-                    </Link>
+                <div className={'time_wrapper'}>
+                    <div className={'time'}>
+                        {this.state.time}
+                    </div>
                 </div>
-            </div>
-        </>;
+                <div className={'btn_wrapper'}>
+                    <div className={'btn btn-success'}>
+                        <Link to={'/'}>
+                            {this.state.style.btn_text}
+                        </Link>
+                    </div>
+                </div>
+            </>;
 
         if (this.state.jsonData !== '') {
             this.gameData = this.state.jsonData[this.props.match.params.id];
@@ -126,14 +127,14 @@ class Game extends Component {
                     return (<div>Please back and put your name</div>)
                 } else {
                     return (
-                            <div>{pageContent}</div>
+                        <div>{pageContent}</div>
                     );
                 }
             } else {
                 return <div>Loading...</div>
             }
         } else {
-            if (this.state.opponentLogin === undefined) {
+            if (this.state.ownerLogin === undefined) {
                 return (<div>Please back and put your name</div>)
             } else {
                 return (
