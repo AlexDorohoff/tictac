@@ -12,15 +12,13 @@ class Tile extends Component {
         this.onClickTile = this.onClickTile.bind(this);
     }
 
-    onClickTile(e) {
-        if (this.props.playng) {
+    onClickTile() {
+        if (this.props.playing) {
             this.setState({isOpen: 'true'})
-            console.log(this.state.symb);
         }
     }
 
     render() {
-        console.log('props ', this.props.match);
         return (
             <div className="tile" style={this.state.symb} id={"1"} onClick={this.onClickTile}>
                 {this.state.isOpen && (

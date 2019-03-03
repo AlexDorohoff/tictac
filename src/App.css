@@ -11,6 +11,10 @@ a {
     color: #FFFFFF !important;
 }
 
+body {
+    background-color: #F2F2F2 !important;
+}
+
 a:hover, a:focus {
     text-decoration: none !important;
     color: #C9C9C9 !important;
@@ -27,7 +31,6 @@ input, input :active, input:focus {
     max-width: 500px;
     text-align: left;
     margin: auto;
-    box-shadow: 5px 3px 3px rgba(0, 0, 0, 0.25);
 }
 
 .header {
@@ -39,7 +42,6 @@ input, input :active, input:focus {
 }
 
 .main {
-    background-color: #F2F2F2;
     padding: 20px;
     overflow: hidden;
 }
@@ -114,7 +116,7 @@ input, input :active, input:focus {
     color: darkgray;
 }
 
-.big_tic{
+.big_tic {
     font-size: 120px;
     color: darkgray;
     position: absolute;
@@ -133,34 +135,31 @@ input, input :active, input:focus {
     margin: 4px;
 }
 
-.not_clickable{
+.not_clickable {
     grid-area: click-guard;
     height: 100%;
     width: 100%;
     z-index: 1;
 }
 
-.btn_wrapper{
+.btn_wrapper {
     text-align: center;
     margin-top: 30px;
 }
 
-.timer{
+.timer {
     color: #282C34;
     font-size: small;
     float: right;
     margin-right: 5px;
 }
 
-.item_owner{
-
-}
-
-.item_opponent{
-
-}
-
-.item_login{
+.item_login {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.time_wrapper{
+    text-align: center;
+    margin-top: 20px;
 }
