@@ -1,22 +1,28 @@
 import React, {Component} from 'react';
 import Tile from '../tile/tile.jsx'
 import {Link} from "react-router-dom";
-import jsonData from "../../api.json";
+
+/**import jsonData from "../../api.json";**/
 
 class Game extends Component {
     constructor(props) {
         super(props);
         this.state =
             {
+                jsonData: '',
                 play: true,
                 style: {
-                    play_board_theme: {background: ''},
-                    login_theme: {background: ''},
-                    sprite_theme: {background: ''},
                     btn_text: 'SURRENDER',
-                }
-            };
+                    opponentLogin: '',
+                },
+            }
+        ;
+
+        //// добавить третье, базовое состояние, стили прописать в компоненте
+
         this.gameData = '';
+
+
         this.notPlayng = {
             play_board_theme: {background: '#B6B6B4'},
             login_theme: {color: '#B6B6B4'},
@@ -26,11 +32,24 @@ class Game extends Component {
     }
 
 
-    componentDidMount() {
-        this.control();
+    componentWillMount() {
+        fetch("/games/list")
+            .then(response => response.json())
+            .then(data => ((this.setData(data)), this.control()))
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
+    setData(data) {
+        this.setState({jsonData: data}, () => {
+            console.log(data, this.state)
+        })
+    }
+    ;
+
     control() {
+        console.log('game data in control', this.gameData);
         if (this.gameData !== undefined) {
             if (this.gameData.owner !== undefined) {
                 if (this.gameData.opponent !== undefined) {
@@ -41,7 +60,6 @@ class Game extends Component {
                         style: this.notPlayng,
                     });
                 } else {
-                    console.log('set login 2', this.props.match.params.owner)
                     this.setState({
                         ownerLogin: this.gameData.owner,
                         opponentLogin: this.props.match.params.owner,
@@ -50,10 +68,13 @@ class Game extends Component {
                 }
             }
         } else {
-            this.setState({
-                ownerLogin: this.props.match.params.owner,
-                play: true,
-            })
+            if (this.props.match.params.owner !== "undefined") {
+                console.log("in control, login not undefi");
+                this.setState({
+                    ownerLogin: this.props.match.params.owner,
+                    play: true,
+                })
+            }
         }
     }
 
@@ -67,7 +88,6 @@ class Game extends Component {
 
     render() {
         let tileList = this.makeTileList();
-        
         const pageContent = <>
             <div className={'login'}>
                 <div className={'owner'}>
@@ -78,7 +98,7 @@ class Game extends Component {
                 <div className={'opponent'}>
                     <span className={'tac'} style={this.state.style.sprite_theme}>&#9675;</span>
                     <span className={'user_name'}
-                          style={this.state.style.login_theme}>{this.state.opponentLogin}</span>
+                          style={this.state.style.login_theme}>{this.state.opponentLogin || '   '}</span>
                 </div>
             </div>
             <div className="not_clickable">
@@ -101,26 +121,34 @@ class Game extends Component {
             </div>
         </>;
 
-        this.gameData = jsonData[this.props.match.params.id];
-        if (this.gameData === undefined) {
-            if (this.state.ownerLogin === "undefined") {
-                return (<div>Please back and put your name</div>)
-            } else {
-                return (
-                    <div>{pageContent}</div>
-                );
-            }
-        } else {
-            if (this.gameData.opponent === undefined) {
+        if (this.state.jsonData !== '') {
+            this.gameData = this.state.jsonData[this.props.match.params.id];
+        }
+        console.log('game data', this.gameData);
+        if (this.gameData !== undefined) {
+            if (this.gameData.length !== 0) {
+                console.log('owner login', this.state.ownerLogin);
+                console.log('opponent login', this.state.opponentLogin);
                 if (this.state.opponentLogin === "undefined") {
+                    console.log('1');
                     return (<div>Please back and put your name</div>)
                 } else {
                     return (
-                        <div>{pageContent}</div>)
+                        console.log('2'),
+                            <div>{pageContent}</div>
+                    );
                 }
             } else {
-                return <div>{pageContent}</div>
+                return <div>this is it</div>
             }
+        } else {
+            if (this.state.opponentLogin === undefined) {
+                return (<div>Please back and put your name</div>)
+            } else {
+                return (
+                    <div>{pageContent}</div>)
+            }
+
         }
     }
 }

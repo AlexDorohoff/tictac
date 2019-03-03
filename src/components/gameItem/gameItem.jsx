@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch, Link, NavLink} from 'react-router-dom';
-
 
 class GameItem extends Component {
     constructor(props) {
@@ -66,7 +64,6 @@ class GameItem extends Component {
 
 
     render() {
-        console.log('all state', this.state);
         return (
 
             <div className={'panel'} style={this.state.color}>
