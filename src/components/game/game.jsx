@@ -11,7 +11,10 @@ class Game extends Component {
             {
                 jsonData: '',
                 play: true,
-                style: '',
+                style: {
+                    btn_text: 'SURRENDER',
+                    opponentLogin: '',
+                },
             }
         ;
         this.gameData = '';
@@ -31,9 +34,6 @@ class Game extends Component {
             .catch((error) => {
                 console.error(error);
             });
-        console.log('json data after fetch', this.state.jsonData);
-
-        this.control(this.gameData);
     }
 
     setData(data) {
@@ -44,7 +44,8 @@ class Game extends Component {
     ;
 
     control() {
-        if (this.gameData !== '') {
+        console.log('game data in control', this.gameData, this.gameData.length);
+        if (this.gameData.length !== 0) {
             if (this.gameData.owner !== undefined) {
                 if (this.gameData.opponent !== undefined) {
                     this.setState({
@@ -89,7 +90,7 @@ class Game extends Component {
                 <div className={'opponent'}>
                     <span className={'tac'} style={this.state.style.sprite_theme}>&#9675;</span>
                     <span className={'user_name'}
-                          style={this.state.style.login_theme}>{this.state.opponentLogin}</span>
+                          style={this.state.style.login_theme}>{this.state.opponentLogin || '   '}</span>
                 </div>
             </div>
             <div className="not_clickable">
@@ -112,16 +113,18 @@ class Game extends Component {
             </div>
         </>;
 
-        console.log('state in game', this.state)
         if (this.state.jsonData !== '') {
             this.gameData = this.state.jsonData[this.props.match.params.id];
         }
-        console.log('gamedata', this.gameData);
-        if (this.gameData === undefined) {
+        console.log('game data', this.gameData);
+        if (this.gameData === '') {
+            console.log('owner login',this.state.ownerLogin);
             if (this.state.ownerLogin === "undefined") {
+                console.log('1');
                 return (<div>Please back and put your name</div>)
             } else {
                 return (
+                    console.log('2'),
                     <div>{pageContent}</div>
                 );
             }
