@@ -17,7 +17,9 @@ app.get("/", function (req, res) {
 
 app.get('/games/list', controller.getGamesList);
 
-app.post('/games/new', controller.createNewGame)
+app.post('/games/new', controller.createNewGame);
+
+app.get('games/:id')
 
 
 

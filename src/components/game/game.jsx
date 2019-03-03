@@ -18,19 +18,14 @@ class Game extends Component {
             }
         ;
 
-        //// добавить третье, базовое состояние, стили прописать в компоненте
-
         this.gameData = '';
-
-
-        this.notPlayng = {
+        this.notPlaying = {
             play_board_theme: {background: '#B6B6B4'},
             login_theme: {color: '#B6B6B4'},
             sprite_theme: {color: '#B6B6B4'},
             btn_text: 'BACK'
         };
     }
-
 
     componentWillMount() {
         fetch("/games/list")
@@ -43,13 +38,10 @@ class Game extends Component {
 
     setData(data) {
         this.setState({jsonData: data}, () => {
-            console.log(data, this.state)
         })
-    }
-    ;
+    };
 
     control() {
-        console.log('game data in control', this.gameData);
         if (this.gameData !== undefined) {
             if (this.gameData.owner !== undefined) {
                 if (this.gameData.opponent !== undefined) {
@@ -57,7 +49,7 @@ class Game extends Component {
                         play: false,
                         ownerLogin: this.gameData.owner,
                         opponentLogin: this.gameData.opponent,
-                        style: this.notPlayng,
+                        style: this.notPlaying,
                     });
                 } else {
                     this.setState({
@@ -69,7 +61,6 @@ class Game extends Component {
             }
         } else {
             if (this.props.match.params.owner !== "undefined") {
-                console.log("in control, login not undefi");
                 this.setState({
                     ownerLogin: this.props.match.params.owner,
                     play: true,
@@ -81,14 +72,15 @@ class Game extends Component {
     makeTileList() {
         const tileList = [];
         for (let i = 0; i < 9; i++) {
-            tileList.push(<Tile playng={this.state.play}/>)
+            tileList.push(<Tile playing={this.state.play}/>)
         }
         return tileList
     }
 
     render() {
         let tileList = this.makeTileList();
-        const pageContent = <>
+        const pageContent =
+            <>
             <div className={'login'}>
                 <div className={'owner'}>
                                 <span className={'user_name'}
@@ -112,6 +104,9 @@ class Game extends Component {
                 <div className={'time'}>
                 </div>
             </div>
+            <div className={'timer'}>
+
+            </div>
             <div className={'btn_wrapper'}>
                 <div className={'btn btn-success'}>
                     <Link to={'/'}>
@@ -124,22 +119,18 @@ class Game extends Component {
         if (this.state.jsonData !== '') {
             this.gameData = this.state.jsonData[this.props.match.params.id];
         }
-        console.log('game data', this.gameData);
+
         if (this.gameData !== undefined) {
             if (this.gameData.length !== 0) {
-                console.log('owner login', this.state.ownerLogin);
-                console.log('opponent login', this.state.opponentLogin);
                 if (this.state.opponentLogin === "undefined") {
-                    console.log('1');
                     return (<div>Please back and put your name</div>)
                 } else {
                     return (
-                        console.log('2'),
                             <div>{pageContent}</div>
                     );
                 }
             } else {
-                return <div>this is it</div>
+                return <div>Loading...</div>
             }
         } else {
             if (this.state.opponentLogin === undefined) {
@@ -148,7 +139,6 @@ class Game extends Component {
                 return (
                     <div>{pageContent}</div>)
             }
-
         }
     }
 }
