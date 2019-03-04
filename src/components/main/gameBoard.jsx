@@ -19,6 +19,7 @@ class GameBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            error: false,
             login: 'undefined',
             newLogin: '',
             jsonData: ''
@@ -62,6 +63,7 @@ class GameBoard extends Component {
             .then(data => (this.setData(data)))
             .catch((error) => {
                 console.error(error);
+                this.throwError();
             })
     }
 
@@ -90,7 +92,11 @@ class GameBoard extends Component {
             );
 
         } else {
-            this.boardContent = (<p> Do not have new games. Сreate new!</p>);
+            if (this.state.error === true) {
+                this.boardContent = (<p> Do not have new games. Сreate new!</p>);
+            } else {
+                return <div></div>
+            }
         }
         return (
             <>

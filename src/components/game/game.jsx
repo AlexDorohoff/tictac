@@ -9,6 +9,7 @@ class Game extends Component {
         super(props);
         this.state =
             {
+                error: false,
                 jsonData: '',
                 play: true,
                 style: {
@@ -25,6 +26,8 @@ class Game extends Component {
             sprite_theme: {color: '#B6B6B4'},
             btn_text: 'BACK'
         };
+
+        this.error = false;
     }
 
     componentWillMount() {
@@ -32,14 +35,20 @@ class Game extends Component {
             .then(response => response.json())
             .then(data => ((this.setData(data)), this.control()))
             .catch((error) => {
+                this.throwError();
                 console.error(error);
-            });
+            })
     }
 
     setData(data) {
         this.setState({jsonData: data}, () => {
         })
     };
+
+    throwError() {
+        console.log("in error");
+        this.setState({error: true})
+    }
 
     control() {
         if (this.gameData !== undefined) {
@@ -50,7 +59,7 @@ class Game extends Component {
                         ownerLogin: this.gameData.owner,
                         opponentLogin: this.gameData.opponent,
                         style: this.notPlaying,
-                        time:this.gameData.time
+                        time: this.gameData.time
                     });
                 } else {
                     this.setState({
@@ -79,6 +88,7 @@ class Game extends Component {
         }
         return tileList
     }
+
 
     render() {
         let tileList = this.makeTileList();
@@ -131,7 +141,13 @@ class Game extends Component {
                     );
                 }
             } else {
-                return <div>Loading...</div>
+                if (this.state.error === true) {
+                    return <div>Something went wrong.<br/>
+                        Go back!
+                    </div>
+                } else {
+                    return <div></div>
+                }
             }
         } else {
             if (this.state.ownerLogin === undefined) {
@@ -141,6 +157,7 @@ class Game extends Component {
                     <div>{pageContent}</div>)
             }
         }
+
     }
 }
 
