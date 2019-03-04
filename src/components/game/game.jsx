@@ -41,8 +41,7 @@ class Game extends Component {
     }
 
     setData(data) {
-        this.setState({jsonData: data}, () => {
-        })
+        this.setState({jsonData: data})
     };
 
     throwError() {
