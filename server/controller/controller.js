@@ -83,7 +83,7 @@ const NewGame = function (userName, res) {
 const returnError = function (res, code, message) {
     res.json(
         {
-            "status": "error",
+            "status": "r.jsx",
             "code": code,
             "message": message
         }
